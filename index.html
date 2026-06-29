@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Digital Portfolio | Phạm Thị Thu Huyền</title>
+    <style>
+        /* --- HỆ THỐNG MÀU CHỦ ĐẠO (XANH DƯƠNG - BẠC - TRẮNG) --- */
+        :root {
+            --primary-blue: #0056b3;
+            --dark-blue: #0A2540;
+            --accent-blue: #007bff;
+            --silver-light: #f4f6f9;
+            --silver-med: #e2e8f0;
+            --silver-text: #64748b;
+            --white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--silver-light);
+            color: var(--dark-blue);
+            line-height: 1.6;
+        }
+
+        /* --- THANH ĐIỀU HƯỚNG & HEADER --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            border-left: 2px solid var(--silver-med);
+            padding-left: 12px;
+        }
+
+        .logo-text h1 {
+            font-size: 16px;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            color: var(--silver-text);
+        }
+
+        nav {
+            display: flex;
+            gap: 5px;
+            background: var(--silver-light);
+            padding: 5px;
+            border-radius: 8px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--silver-text);
+            cursor: pointer;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-btn.active {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            box-shadow: 0 2px 6px var(--shadow);
+        }
+
+        /* --- KHUNG CHỨA NỘI DUNG CHÍNH --- */
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            min-height: 70vh;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 1. TRANG GIỚI THIỆU (ĐÃ MỞ RỘNG) --- */
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .profile-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--silver-med);
+        }
+
+        .profile-card img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--silver-light);
+            box-shadow: 0 4px 10px rgba(0,86,179,0.15);
+            margin-bottom: 20px;
+        }
+
+        .profile-card h2 {
+            font-size: 22px;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+        }
+
+        .profile-card .msv {
+            font-size: 14px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            background: rgba(0,123,255,0.08);
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .info-list {
+            text-align: left;
+            margin-top: 20px;
+            border-top: 1px solid var(--silver-med);
+            padding-top: 15px;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .info-item strong {
+            color: var(--silver-text);
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .intro-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .section-box {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px var(--shadow);
+            border-left: 5px solid var(--primary-blue);
+        }
+
+        .section-box h3 {
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-box p {
+            font-size: 15px;
+            color: #4a5568;
+            text-align: justify;
+            margin-bottom: 15px;
+            text-indent: 20px;
+        }
+
+        .section-box ul {
+            padding-left: 20px;
+            font-size: 15px;
+            color: #4a5568;
+        }
+
+        .section-box li {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* --- 2. TRANG DỰ ÁN --- */
+        .projects-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .projects-heading h2 {
+            font-size: 28px;
+            color: var(--dark-blue);
+        }
+
+        .projects-heading p {
+            color: var(--silver-text);
+            font-size: 15px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--silver-med);
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,86,179,0.12);
+            border-color: var(--accent-blue);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .project-header .meta-tag {
+            font-size: 11px;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .project-header h3 {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .project-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .project-desc h4 {
+            font-size: 13px;
+            color: var(--primary-blue);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .project-desc p {
+            font-size: 14px;
+            color: #4a5568;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        .view-btn {
+            background-color: var(--silver-light);
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+        }
+
+        .view-btn:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* --- MODAL POPUP (XEM FILE TRỰC TIẾP TRÊN TRANG) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 37, 64, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            background: var(--silver-light);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--silver-med);
+        }
+
+        .modal-header h3 {
+            font-size: 16px;
+            color: var(--dark-blue);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--silver-text);
+            cursor: pointer;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: red;
+        }
+
+        .modal-body {
+            flex-grow: 1;
+            background: #525659;
+            position: relative;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--dark-blue);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 60px;
+            font-size: 13px;
+            border-top: 3px solid var(--accent-blue);
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; }
+            .intro-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="logo-uet.jpg" alt="UET VNU Logo" onerror="this.style.display='none';">
+                <div class="logo-text">
+                    <h1>Trường Đại học Công nghệ</h1>
+                    <p>Đại học Quốc gia Hà Nội</p>
+                </div>
+            </div>
+            <nav>
+                <button id="btn-intro" class="nav-btn active" onclick="switchTab('intro', this)">1. Giới thiệu</button>
+                <button id="btn-projects" class="nav-btn" onclick="switchTab('projects', this)">2. Trang dự án</button>
+                <button id="btn-summary" class="nav-btn" onclick="switchTab('summary', this)">3. Tổng kết</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="intro" class="tab-content active">
+            <div class="intro-grid">
+                <div class="profile-card">
+                    <img src="avatar.jpg" alt="Phạm Thị Thu Huyền" onerror="this.src='https://via.placeholder.com/160?text=Avatar';">
+                    <h2>Phạm Thị Thu Huyền</h2>
+                    <span class="msv">MSV: 25023113</span>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <strong>Khoa đào tạo</strong>
+                            Vật lý kĩ thuật và công nghệ nano
+                        </div>
+                        <div class="info-item">
+                            <strong>Chuyên ngành</strong>
+                            Kỹ thuật năng lượng
+                        </div>
+                        <div class="info-item">
+                            <strong>Sở thích cá nhân</strong>
+                            Nghiên cứu công nghệ sạch, tối ưu hóa năng lượng tái tạo, đọc tài liệu kỹ thuật, lập trình web cơ bản và phát triển kỹ năng ứng dụng AI.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="intro-details">
+                    <div class="section-box">
+                        <h3>🎯 Mục tiêu học tập & Định hướng phát triển</h3>
+                        <p>Trong bối cảnh toàn cầu đang bước vào cuộc dịch chuyển năng lượng mạnh mẽ hướng tới sự bền vững, em nhận thức sâu sắc rằng một kỹ sư ngành Kỹ thuật năng lượng hiện đại không chỉ cần nắm vững các nguyên lý vật lý cốt lõi, mà còn phải là một người làm chủ công nghệ và năng lực số. Học tập tại Khoa Vật lý kỹ thuật và Công nghệ nano của Trường Đại học Công nghệ (UET-VNU) mang lại cho em một môi trường lý tưởng để kết hợp kiến thức khoa học nền tảng với các tư duy công nghệ tiên tiến nhất.</p>
+                        <p>Mục tiêu ngắn hạn của em trong suốt quá trình học tập tại trường là tối ưu hóa điểm số thông qua việc hoàn thành xuất sắc các bài tập thực hành, rèn luyện kỹ năng phân tích dữ liệu kỹ thuật và ứng dụng thành thạo các mô hình AI tạo sinh để tăng tốc hiệu suất nghiên cứu. Định hướng dài hạn sau khi tốt nghiệp, em mong muốn trở thành một chuyên gia công nghệ năng lượng sạch, có khả năng trực tiếp tham gia vào việc tối ưu hóa mạng lưới điện thông minh, nghiên cứu các loại vật liệu lưu trữ năng lượng mới ở quy mô nano và đóng góp các giải pháp công nghệ có giá trị thực tiễn cho quốc gia.</p>
+                    </div>
+
+                    <div class="section-box">
+                        <h3>💻 Mục tiêu của Học phần & Digital Portfolio này</h3>
+                        <p>Học phần này đóng vai trò là một bệ phóng quan trọng giúp em chuẩn hóa lại toàn bộ tư duy thao tác và xử lý thông tin trên môi trường internet học thuật. Việc xây dựng trang Digital Portfolio cá nhân này được thiết kế nhằm hiện thực hóa các mục tiêu mang tính chiến lược sau đây:</p>
+                        <ul>
+                            <li><strong>Minh chứng và Đo lường Năng lực Số:</strong> Portfolio là bằng chứng trực quan và sinh động nhất ghi lại toàn bộ tiến trình học tập, phản ánh chân thực năng lực số từ việc quản trị tệp tin cơ bản đến các kỹ năng phức tạp như tối ưu hóa Prompt và tương tác có trách nhiệm với các mô hình trí tuệ nhân tạo.</li>
+                            <li><strong>Xây dựng Không gian Lưu trữ Khoa học:</strong> Thay thế các phương thức lưu trữ phân tán truyền thống bằng một hệ thống danh mục có cấu trúc chặt chẽ, đồng bộ hóa các bài tập lớn nhỏ dưới dạng liên kết trực tiếp để phục vụ cho việc tra cứu, đối chiếu lâu dài trong tương lai.</li>
+                            <li><strong>Hình thành Tư duy Thiết kế và Quản trị Thông tin:</strong> Việc tự lên kế hoạch cấu trúc giao diện, phối hợp màu sắc Xanh dương - Bạc công nghệ và cấu hình mã lệnh hiển thị giúp em trực tiếp rèn luyện tư duy logic của một kỹ sư công nghệ, biến những lý thuyết khô khan thành một sản phẩm số hoàn chỉnh, thẩm mỹ và chuyên nghiệp.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="tab-content">
+            <div class="projects-heading">
+                <h2>Hệ thống hóa kết quả bài tập thành phần</h2>
+                <p>Tổng hợp các sản phẩm thực hành minh chứng cho tiến trình phát triển năng lực số</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="meta-tag">Bài tập 1 - Mục 1.4</span>
+                        <h3>Thao tác cơ bản với tệp tin và thư mục</h3>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-desc">
+                            <h4>Mục tiêu & Nội dung:</h4>
+                            <p>Xây dựng cấu trúc thư mục học tập tối ưu, áp dụng quy tắc đặt tên tệp chuẩn mực và khoa học. Giúp tăng tốc độ tìm kiếm và quản lý tài nguyên học tập hiệu quả, đính kèm ảnh chụp minh họa cây thư mục.</p>
+                        </div>
+                        <button class="view-btn" onclick="openModal('bai1.pdf', 'Bài tập 1: Thao tác cơ bản với tệp tin và thư mục')">Xem sản phẩm liên kết</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="meta-tag">Bài tập 2 - Mục 2.4</span>
+                        <h3>Tìm kiếm và đánh giá thông tin học thuật</h3>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-desc">
+                            <h4>Mục tiêu & Nội dung:</h4>
+                            <p>Trình bày kết quả khai thác dữ liệu và thông tin học thuật nâng cao thông qua việc sử dụng các toán tử tìm kiếm logic. Đồng thời, xây dựng bảng tiêu chí đánh giá độ tin cậy và tính chính xác của các nguồn tài nguyên.</p>
+                        </div>
+                        <button class="view-btn" onclick="openModal('bai2.pdf', 'Bài tập 2: Tìm kiếm và đánh giá thông tin học thuật')">Xem sản phẩm liên kết</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="meta-tag">Bài tập 3 - Mục 3.4</span>
+                        <h3>Viết Prompt hiệu quả cho các tác vụ học tập</h3>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-desc">
+                            <h4>Mục tiêu & Nội dung:</h4>
+                            <p>Tổng quan về kỹ nghệ ra lệnh (Prompt Engineering) trong AI. Trình bày bảng so sánh đối chiếu trực quan giữa cấu trúc Prompt ban đầu và Prompt cải tiến, đánh giá tính chính xác của kết quả đầu ra từ mô hình ngôn ngữ lớn.</p>
+                        </div>
+                        <button class="view-btn" onclick="openModal('bai3.pdf', 'Bài tập 3: Viết Prompt hiệu quả cho các tác vụ học tập')">Xem sản phẩm liên kết</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="meta-tag">Bài tập 4 - Mục 4.4</span>
+                        <h3>Sử dụng công cụ hợp tác trực tuyến cho dự án nhóm</h3>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-desc">
+                            <h4>Mục tiêu & Nội dung:</h4>
+                            <p>Minh chứng quy trình giao tiếp, lập kế hoạch và phân chia công việc trong môi trường số. Giới thiệu các công cụ quản lý tiến độ, phối hợp trực tuyến theo thời gian thực nhằm tối ưu năng suất làm việc nhóm.</p>
+                        </div>
+                        <button class="view-btn" onclick="openModal('bai4.pdf', 'Bài tập 4: Sử dụng công cụ hợp tác trực tuyến')">Xem sản phẩm liên kết</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="meta-tag">Bài tập 5 - Mục 5.4</span>
+                        <h3>Sử dụng AI tạo sinh để hỗ trợ sáng tạo nội dung</h3>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-desc">
+                            <h4>Mục tiêu & Nội dung:</h4>
+                            <p>Trưng bày các sản phẩm truyền thông kỹ thuật số hoàn thiện (hình ảnh thiết kế, đoạn phim ngắn hoặc bài viết chuyên môn) được đồng sáng tạo cùng các công cụ Trí tuệ nhân tạo sáng sinh (Generative AI).</p>
+                        </div>
+                        <button class="view-btn" onclick="openModal('bai5.pdf', 'Bài tập 5: Sử dụng AI tạo sinh hỗ trợ sáng tạo nội dung')">Xem sản phẩm liên kết</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="meta-tag">Bài tập 6 - Mục 6.4</span>
+                        <h3>Sử dụng AI có trách nhiệm trong học tập và nghiên cứu</h3>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-desc">
+                            <h4>Mục tiêu & Nội dung:</h4>
+                            <p>Phân tích các khía cạnh về an toàn bảo mật thông tin và liêm chính học thuật số. Trình bày bộ nguyên tắc ứng xử và đạo đức cá nhân khi khai thác dữ liệu và ứng dụng các mô hình AI trong môi trường đại học.</p>
+                        </div>
+                        <button class="view-btn" onclick="openModal('bai6.pdf', 'Bài tập 6: Sử dụng AI có trách nhiệm')">Xem sản phẩm liên kết</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary" class="tab-content">
+            <div class="summary-container">
+                <div class="section-box">
+                    <h3>💡 Trải nghiệm & Cảm nhận cá nhân sâu sắc</h3>
+                    <p>Hành trình xây dựng và hoàn thiện Digital Portfolio này đã mang lại cho em những bài học vượt ra ngoài phạm vi của một môn học thông thường. Đây là một cơ hội lớn để em nhìn lại, đánh giá và tự phản chiếu (self-reflect) chặng đường phát triển tư duy của mình qua từng giai đoạn của học phần. Việc lưu trữ dữ liệu một cách thông minh không đơn thuần là kỹ thuật xử lý máy tính, mà nó phản ánh tính kỷ luật và sự nghiêm túc của một người làm nghiên cứu khoa học.</p>
+                    <p>Em nhận thấy bản thân đã có bước chuyển biến lớn từ việc sử dụng máy tính và internet theo thói quen tự phát, sang việc tiếp cận thông tin có phương pháp luận rõ ràng, biết sàng lọc thông tin rác và có hệ thống tư duy phản biện khi đứng trước các luồng dữ liệu khổng lồ trên mạng xã hội học thuật. Việc tự mình kiểm soát và thiết lập thành công một không gian Portfolio công nghệ giúp em cảm thấy tự tin hơn rất nhiều khi chuẩn bị bước vào các môn học chuyên ngành đầy thử thách phía trước.</p>
+                </div>
+
+                <div class="section-box">
+                    <h3>🎓 Kiến thức & Kỹ năng cốt lõi đã tích lũy</h3>
+                    <p>Xuyên suốt chuỗi 6 bài tập thành phần nâng cao, em đã gặt hái và làm chủ được bộ ba nhóm năng lực cốt lõi cốt tử đối với một sinh viên công nghệ chất lượng cao:</p>
+                    <ul>
+                        <li><strong>Năng lực cấu trúc hóa và quản trị tài nguyên số:</strong> Em đã làm chủ hoàn toàn kỹ năng quy hoạch cây thư mục logic, áp dụng triệt để nguyên tắc đặt tên tệp quốc tế, giúp triệt tiêu thời gian tìm kiếm lãng phí và tối ưu hóa tài nguyên phần cứng lưu trữ.</li>
+                        <li><strong>Kỹ nghệ làm việc với AI (Advanced Prompt Engineering):</strong> Thay vì đặt câu hỏi ngẫu nhiên cho các mô hình AI, em đã thấu hiểu sâu sắc tư duy thiết kế Prompt có cấu trúc (Context - Role - Task - Constraints). Kỹ năng này đóng vai trò quyết định giúp em khai thác AI như một cộng sự đắc lực để giải quyết các bài toán vật lý phức tạp, mô phỏng năng lượng mà vẫn bảo toàn được tính chính xác học thuật.</li>
+                        <li><strong>Liêm chính học thuật và Đạo đức số:</strong> Đây là kiến thức quan trọng nhất giúp em hiểu rõ ranh giới giữa "ứng dụng AI để tham khảo mở rộng" và "đạo văn". Em đã xây dựng cho mình một bộ nguyên tắc ứng xử số văn minh, có trách nhiệm, luôn tôn trọng bản quyền thông tin và minh bạch nguồn gốc dữ liệu.</li>
+                    </ul>
+                </div>
+
+                <div class="section-box" style="border-left-color: #64748b;">
+                    <h3>🛠️ Điểm tâm đắc & Những thách thức kỹ thuật đã vượt qua</h3>
+                    <p><strong>Điểm tâm đắc nhất:</strong> Điều em cảm thấy tự hào nhất chính là việc tích hợp thành công toàn bộ hệ thống 6 bài tập thành phần lớn vào một trang portfolio trực tuyến duy nhất mà không phụ thuộc vào bất kỳ nền tảng tạo web tự động gò bó nào. Sản phẩm đạt được sự đồng bộ tuyệt đối về mặt nhận diện thương hiệu cá nhân thông qua việc phối hợp dải màu Xanh dương sâu - Bạc ánh kim - Trắng thanh lịch, thể hiện rõ nét tư duy của một sinh viên thuộc Khoa Vật lý kỹ thuật và Công nghệ nano.</p>
+                    <p><strong>Thách thức kỹ thuật và Giải pháp:</strong> Khó khăn lớn nhất em gặp phải trong dự án này chính là bài toán trải nghiệm người dùng: Làm thế nào để giảng viên có thể xem trực tiếp 6 file bài tập thành phần một cách nhanh chóng mà không bị chuyển hướng trang (gây mất dấu Portfolio). Bằng việc nghiên cứu sâu về cấu trúc lồng thẻ của HTML5 và cơ chế kích hoạt bất đồng bộ bằng Javascript, em đã tự tay xây dựng hệ thống Modal Popup (Cửa sổ thông minh). Khi click vào nút xem, hệ thống sẽ tự động gọi file PDF lên một khung lồng iframe sắc nét ngay trên màn hình hiện tại. Giải pháp này không chỉ giải quyết triệt để vấn đề kỹ thuật mà còn nâng tầm tính thẩm mỹ và chuyên nghiệp của trang web lên mức tối đa, hướng tới mục tiêu chinh phục điểm số tuyệt đối từ Hội đồng chấm điểm.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="fileModal" class="modal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Tài liệu đính kèm</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="modalIframe" src="" title="Xem trước bài tập"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 - Phạm Thị Thu Huyền - MSV: 25023113</p>
+        <p style="font-size: 11px; margin-top: 5px; color: rgba(255,255,255,0.4);">Báo cáo sản phẩm học phần | Khoa Vật lý kĩ thuật và công nghệ nano - UET VNU</p>
+    </footer>
+
+    <script>
+        // Hàm xử lý chuyển đổi mượt mà qua lại giữa các tab
+        function switchTab(tabId, button) {
+            // Ẩn tất cả các nội dung tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Bỏ kích hoạt tất cả các nút điều hướng
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Hiển thị tab được chọn và kích hoạt nút tương ứng
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+            button.classList.add('active');
+            
+            // Cuộn mượt lên đầu trang khi chuyển đổi tab
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Hàm mở cửa sổ xem file trực tiếp ngay trên trang (Không chuyển hướng)
+        function openModal(fileUrl, title) {
+            const modal = document.getElementById('fileModal');
+            const iframe = document.getElementById('modalIframe');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modalTitle.innerText = title;
+            iframe.src = fileUrl; // Nạp đường dẫn file bài tập vào iframe
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Khóa cuộn trang chính khi xem tài liệu
+        }
+
+        // Hàm đóng cửa sổ xem file
+        function closeModal() {
+            const modal = document.getElementById('fileModal');
+            const iframe = document.getElementById('modalIframe');
+            
+            modal.classList.remove('show');
+            iframe.src = ''; // Xóa nguồn file để giải phóng bộ nhớ
+            document.body.style.overflow = 'auto'; // Mở lại cuộn trang chính
+        }
+
+        // Đóng modal khi giảng viên bấm trượt ra ngoài vùng nội dung tài liệu
+        function closeModalOnOutsideClick(event) {
+            const modal = document.getElementById('fileModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
